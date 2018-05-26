@@ -27,3 +27,4 @@ switch($_SERVER['HTTP_HOST'])
 /** RUTAS GENERALES **/
 define('DOC_ROOT', $docRoot);
 define('WEB_ROOT', $webRoot);
+?>
