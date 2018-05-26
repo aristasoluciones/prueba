@@ -19,7 +19,7 @@ switch($_SERVER['HTTP_HOST'])
 			$rutaPortada =   'http://'.$_SERVER['HTTP_HOST'].'/';
 			$sqlUser = 'root';
 			$sqlPw = 'Pharadox2018*';
-			$sqlHost = 'localhost'; 
+			$sqlHost = 'amazonhbrkuzpe.cufineydp5dx.us-west-2.rds.amazonaws.com'; 
 			$sqlDb = 'huerin';
 		break;
 }
