@@ -10,14 +10,14 @@ $region ="nyc3";
 
 
         $message = '';
-        if(!empty($_FILES['uploaded_file'])) {
+
 
             if (!class_exists('S3')) require_once 'S3.php';
             // AWS access info
             if (!defined('awsAccessKey')) define('awsAccessKey', $key_space);
             if (!defined('awsSecretKey')) define('awsSecretKey', $secret_space);
             $uploadFile = dirname(__FILE__).'/S3.php'; // File to upload, we'll use the S3 class since it exists
-            $bucketName = uniqid($space_name); // Temporary bucket
+            $bucket = uniqid($space_name); // Temporary bucket
             // If you want to use PECL Fileinfo for MIME types:
             //if (!extension_loaded('fileinfo') && @dl('fileinfo.so')) $_ENV['MAGIC'] = '/usr/share/file/magic';
             // Check if our upload file exists
@@ -33,26 +33,44 @@ $region ="nyc3";
 
             $file ='pruebaddddd.txt';
             $path = 'jod.txt';
-            $ext =  end(explode(".",$_FILES['uploaded_file']['name']));
-            S3::setAuth($awsAccessKey, $awsSecretKey);
-            echo "ddd".print_r(S3::listBuckets(),1)."\n"; // Simple bucket list
-            echo "ddd".print_r(S3::listBuckets(true),1)."\n";
-            //S3::putObject(S3::inputFile($file,false),$bucketName,$path,S3::ACL_PUBLIC_READ);
 
-        }
+            S3::setAuth(awsAccessKey, awsSecretKey);
+
+            $path = 'huerin/'; // Can be empty ''
+            $lifetime = 3600; // Period for which the parameters are valid
+            $maxFileSize = (1024 * 1024 * 50); // 50 MB
+            $metaHeaders = array('uid' => 123);
+            $requestHeaders = array(
+                'Content-Type' => 'application/pdf',
+                'Content-Disposition' => 'attachment; filename=${filename}'
+            );
+            $params = S3::getHttpUploadPostParams(
+                $bucket,
+                $path,
+                S3::ACL_PUBLIC_READ,
+                $lifetime,
+                $maxFileSize,
+                201, // Or a URL to redirect to on success
+                $metaHeaders,
+                $requestHeaders,
+                false // False since we're not using flash
+            );
+
+$uploadURL = 'https://' . $bucket . '.s3.amazonaws.com/';
 
 ?>
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Upload your files</title>
+    <title>S3 Form Upload</title>
 </head>
 <body>
-  <?php echo $message; ?>
-  <form enctype="multipart/form-data" action="index.php" method="POST">
-    <p>Upload your file</p>
-    <input type="file" name="uploaded_file"></input><br />
-    <input type="submit" value="Upload"></input>
-  </form>
+<form method="post" action="<?php echo $uploadURL; ?>" enctype="multipart/form-data">
+    <?php
+    foreach ($params as $p => $v)
+        echo "        <input type=\"hidden\" name=\"{$p}\" value=\"{$v}\" />\n";
+    ?>
+    <input type="file" name="file" />&#160;<input type="submit" value="Upload" />
+</form>
 </body>
 </html>
