@@ -31,14 +31,11 @@ $region ="nyc3";
                             exit("\nERROR: AWS access information required\n\nPlease edit the following lines in this file:\n\n".
                                 "define('awsAccessKey', 'change-me');\ndefine('awsSecretKey', 'change-me');\n\n");*/
 
-                        $ext =  end(explode(".",$_FILES['uploaded_file']['name']));
-                        $saveAs = "arvhivo1.".$ext;
-                        $path_to_file = $_FILES['uploaded_file']['tmp_name'];
-
+            $file =$_FILES['uploaded_file']['tmp_name'];
+            $path ="huerin/". $_FILES['uploaded_file']['name'];
+            $ext =  end(explode(".",$_FILES['uploaded_file']['name']));
             $s3 = new S3(awsAccessKey, awsSecretKey);
-// List your buckets:
-            echo "S3::listBuckets(): ".print_r($s3->listBuckets(), 1)."\n";
-                //$space->UploadFile($path_to_file, "public",$saveAs);
+            $s3->putObject($s3::inputFile($file,false),$bucketName,$path,S3::ACL_PUBLIC_READ);
 
         }
 
