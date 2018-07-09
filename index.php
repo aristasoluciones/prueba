@@ -35,7 +35,7 @@ $region ="nyc3";
             $path ="huerin/". $_FILES['uploaded_file']['name'];
             $ext =  end(explode(".",$_FILES['uploaded_file']['name']));
             $s3 = new S3(awsAccessKey, awsSecretKey);
-            $s3->putObject($s3::inputFile($file,false),$bucketName,$path,S3::ACL_PUBLIC_READ);
+            $s3->putObject(S3::inputFile($file,false),$bucketName,$path,S3::ACL_PUBLIC_READ);
 
         }
 
