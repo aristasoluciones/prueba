@@ -33,6 +33,7 @@ $region ="nyc3";
             $path ="huerin/". $_FILES['uploaded_file']['name'];
             $ext =  end(explode(".",$_FILES['uploaded_file']['name']));
             $s3 = new S3(awsAccessKey, awsSecretKey);
+            echo "<pre>";
             print_r($s3->listBuckets())."\n";
             print_r($s3->listBuckets(true))."\n";
         }
