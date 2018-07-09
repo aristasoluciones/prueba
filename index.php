@@ -10,14 +10,14 @@ $region ="nyc3";
 
 
         $message = '';
-
+        if(!empty($_FILES['uploaded_file'])) {
 
             if (!class_exists('S3')) require_once 'S3.php';
             // AWS access info
             if (!defined('awsAccessKey')) define('awsAccessKey', $key_space);
             if (!defined('awsSecretKey')) define('awsSecretKey', $secret_space);
             $uploadFile = dirname(__FILE__).'/S3.php'; // File to upload, we'll use the S3 class since it exists
-            $bucket = $space_name; // Temporary bucket
+            $bucketName = $space_name; // Temporary bucket
             // If you want to use PECL Fileinfo for MIME types:
             //if (!extension_loaded('fileinfo') && @dl('fileinfo.so')) $_ENV['MAGIC'] = '/usr/share/file/magic';
             // Check if our upload file exists
@@ -31,46 +31,26 @@ $region ="nyc3";
                             exit("\nERROR: AWS access information required\n\nPlease edit the following lines in this file:\n\n".
                                 "define('awsAccessKey', 'change-me');\ndefine('awsSecretKey', 'change-me');\n\n");*/
 
-            $file ='pruebaddddd.txt';
-            $path = 'jod.txt';
+            $file =$_FILES['uploaded_file']['tmp_name'];
+            $path ="huerin/". $_FILES['uploaded_file']['name'];
+            $ext =  end(explode(".",$_FILES['uploaded_file']['name']));
+            $s3 = new S3(awsAccessKey, awsSecretKey);
+            $s3->putObject(S3::inputFile($file,false),$bucketName,$path,S3::ACL_PUBLIC_READ);
 
-            S3::setAuth(awsAccessKey, awsSecretKey);
-
-            $path = 'huerin/'; // Can be empty ''
-            $lifetime = 3600; // Period for which the parameters are valid
-            $maxFileSize = (1024 * 1024 * 50); // 50 MB
-            $metaHeaders = array('uid' => 123);
-            $requestHeaders = array(
-                'Content-Type' => 'application/pdf',
-                'Content-Disposition' => 'attachment; filename=${filename}'
-            );
-            $params = S3::getHttpUploadPostParams(
-                $bucket,
-                $path,
-                S3::ACL_PUBLIC_READ,
-                $lifetime,
-                $maxFileSize,
-                201, // Or a URL to redirect to on success
-                $metaHeaders,
-                $requestHeaders,
-                false // False since we're not using flash
-            );
-
-$uploadURL = 'https://' . $bucket . '.nyc3.digitaloceanspaces.com/';
+        }
 
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-    <title>S3 Form Upload</title>
+  <title>Upload your files</title>
 </head>
 <body>
-<form method="post" action="<?php echo $uploadURL; ?>" enctype="multipart/form-data">
-    <?php
-    foreach ($params as $p => $v)
-        echo "        <input type=\"hidden\" name=\"{$p}\" value=\"{$v}\" />\n";
-    ?>
-    <input type="file" name="file" />&#160;<input type="submit" value="Upload" />
-</form>
+  <?php echo $message; ?>
+  <form enctype="multipart/form-data" action="index.php" method="POST">
+    <p>Upload your file</p>
+    <input type="file" name="uploaded_file"></input><br />
+    <input type="submit" value="Upload"></input>
+  </form>
 </body>
 </html>
