@@ -5,6 +5,10 @@ switch($_SERVER['HTTP_HOST'])
 	case 'localhost':
 			$webRoot = 'http://'.$_SERVER['HTTP_HOST'].'/prueba';
 			$docRoot = $_SERVER['DOCUMENT_ROOT'].'/prueba';
+            $key_space = "2W2GYHQTDWVOKY2UBHNO";
+            $secret_space ="HLkBfil7oF8ZtiId+RDG13POhhXZgWKOrzyvEcI/AXg";
+            $space_name = "hbkruzpehost";
+            $region ="nyc3";
 			$sqlUser = 'root'; 
 			$sqlPw = ''; 
 			$sqlHost = 'localhost'; 
@@ -15,7 +19,10 @@ switch($_SERVER['HTTP_HOST'])
 	default:
 			$webRoot = 'http://'.$_SERVER['HTTP_HOST'].'/';
 			$docRoot = $_SERVER['DOCUMENT_ROOT'].'/';
-			$rutaDocumento =  'https://hbkruzpehost.nyc3.digitaloceanspaces.com/huerin/';
+			$key_space = "";
+			$secret_space ="";
+			$space_name = "hbkruzpehost";
+			$region ="nyc3";
 			$sqlUser = 'root';
 			$sqlPw = 'Pharadox2018#';
 			$sqlHost = 'localhost';
