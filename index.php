@@ -17,7 +17,7 @@ $region ="nyc3";
             if (!defined('awsAccessKey')) define('awsAccessKey', $key_space);
             if (!defined('awsSecretKey')) define('awsSecretKey', $secret_space);
             $uploadFile = dirname(__FILE__).'/S3.php'; // File to upload, we'll use the S3 class since it exists
-            $bucket = uniqid($space_name); // Temporary bucket
+            $bucket = $space_name; // Temporary bucket
             // If you want to use PECL Fileinfo for MIME types:
             //if (!extension_loaded('fileinfo') && @dl('fileinfo.so')) $_ENV['MAGIC'] = '/usr/share/file/magic';
             // Check if our upload file exists
