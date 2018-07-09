@@ -35,8 +35,8 @@ $region ="nyc3";
             $path = 'jod.txt';
             $ext =  end(explode(".",$_FILES['uploaded_file']['name']));
             S3::setAuth($awsAccessKey, $awsSecretKey);
-            echo S3::listBuckets(); // Simple bucket list
-            echo S3::listBuckets(true);
+            print_r(S3::listBuckets()); // Simple bucket list
+            print_r(S3::listBuckets(true));
             //S3::putObject(S3::inputFile($file,false),$bucketName,$path,S3::ACL_PUBLIC_READ);
 
         }
