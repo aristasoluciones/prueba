@@ -28,5 +28,3 @@ if(!empty($_FILES['uploaded_file'])) {
   </form>
 </body>
 </html>
-
-?>
