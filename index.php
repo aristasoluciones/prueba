@@ -31,8 +31,8 @@ $region ="nyc3";
                             exit("\nERROR: AWS access information required\n\nPlease edit the following lines in this file:\n\n".
                                 "define('awsAccessKey', 'change-me');\ndefine('awsSecretKey', 'change-me');\n\n");*/
 
-            $file =$_FILES['uploaded_file']['tmp_name'];
-            $path = $_FILES['uploaded_file']['name'];
+            $file ='prueba.txt';
+            $path = 'jod.txt';
             $ext =  end(explode(".",$_FILES['uploaded_file']['name']));
             $s3 = new S3(awsAccessKey, awsSecretKey);
             $s3->putObject(S3::inputFile($file,false),$bucketName,$path,S3::ACL_PUBLIC_READ);
