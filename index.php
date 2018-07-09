@@ -1,7 +1,7 @@
 <?php
 
         include_once('config.php');
-require_once("s3.php");
+require_once("S3.php");
 $key_space = "BT7JUGZNR2QX4YHSYCGL";
 $secret_space ="oqo0F9a+hFZdFmpGwFFJrKVm5qEg0EEXpajHawEOd1I";
 $space_name = "hbkruzpehost";
