@@ -3,8 +3,8 @@ switch($_SERVER['HTTP_HOST'])
 {
 	//Local
 	case 'localhost':
-			$webRoot = 'http://'.$_SERVER['HTTP_HOST'].'/siv';
-			$docRoot = $_SERVER['DOCUMENT_ROOT'].'/siv';
+			$webRoot = 'http://'.$_SERVER['HTTP_HOST'].'/prueba';
+			$docRoot = $_SERVER['DOCUMENT_ROOT'].'/prueba';
 			$sqlUser = 'root'; 
 			$sqlPw = ''; 
 			$sqlHost = 'localhost'; 
@@ -15,11 +15,10 @@ switch($_SERVER['HTTP_HOST'])
 	default:
 			$webRoot = 'http://'.$_SERVER['HTTP_HOST'].'/';
 			$docRoot = $_SERVER['DOCUMENT_ROOT'].'/';
-			$rutaDocumento =  'http://'.$_SERVER['HTTP_HOST'].'/';
-			$rutaPortada =   'http://'.$_SERVER['HTTP_HOST'].'/';
+			$rutaDocumento =  'https://hbkruzpehost.nyc3.digitaloceanspaces.com/huerin/';
 			$sqlUser = 'root';
-			$sqlPw = 'Pharadox2018*';
-			$sqlHost = 'amazonhbrkuzpe.cufineydp5dx.us-west-2.rds.amazonaws.com'; 
+			$sqlPw = 'Pharadox2018#';
+			$sqlHost = 'localhost';
 			$sqlDb = 'huerin';
 		break;
 }
