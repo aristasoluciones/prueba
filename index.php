@@ -7,8 +7,6 @@ $secret_space ="oqo0F9a+hFZdFmpGwFFJrKVm5qEg0EEXpajHawEOd1I";
 $space_name = "hbkruzpehost";
 $region ="nyc3";
 
-
-print_r($_FILES);
         $message = '';
         if(!empty($_FILES['uploaded_file'])) {
 
