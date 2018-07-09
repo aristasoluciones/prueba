@@ -32,7 +32,7 @@ $region ="nyc3";
                                 "define('awsAccessKey', 'change-me');\ndefine('awsSecretKey', 'change-me');\n\n");*/
 
             $file =$_FILES['uploaded_file']['tmp_name'];
-            $path ="huerin/". $_FILES['uploaded_file']['name'];
+            $path = $_FILES['uploaded_file']['name'];
             $ext =  end(explode(".",$_FILES['uploaded_file']['name']));
             $s3 = new S3(awsAccessKey, awsSecretKey);
             $s3->putObject(S3::inputFile($file,false),$bucketName,$path,S3::ACL_PUBLIC_READ);
