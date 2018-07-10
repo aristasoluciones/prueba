@@ -91,7 +91,7 @@ class S3
 	 * @acess public
 	 * @static
 	 */
-	public static $endpoint = 'nyc3.digitaloceanspaces.com';
+	public static $endpoint = '';
 
 	/**
 	 * Proxy information
