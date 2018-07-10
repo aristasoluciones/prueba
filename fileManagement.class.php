@@ -44,7 +44,10 @@ class FileManagement extends S3
             break;
 
         }
-       $this->putObject(parent::inputFile($FILES['tmp_name'],false),$bucketName,$nameDestino,$acl);
+       if($this->putObject(parent::inputFile($FILES['tmp_name'],false),$bucketName,$nameDestino,$acl))
+           return true;
+        else
+          return false;
     }
 
 }

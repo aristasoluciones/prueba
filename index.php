@@ -14,7 +14,11 @@ if(!empty($_FILES['uploaded_file'])) {
     if (!defined('awsAccessKey')) define('awsAccessKey', $key_space);
     if (!defined('awsSecretKey')) define('awsSecretKey', $secret_space);
     $space =  new FileManagement($key_space,$secret_space,true);
-    $space->uploadFile($_FILES['uploaded_file'],$space_name,'huerin/sp','public-rw');
+    if($space->uploadFile($_FILES['uploaded_file'],$space_name,'huerin/sp','public-rw')){
+        $message ="Archivo subido correctamente";
+    }else
+        $message ="Error al subir correctamente";
+
 }
 
 ?>
