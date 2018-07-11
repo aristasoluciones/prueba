@@ -8,7 +8,7 @@ $secret_space ="oqo0F9a+hFZdFmpGwFFJrKVm5qEg0EEXpajHawEOd1I";
 $space_name = "hbkruzpehost";
 $host ="nyc3.digitaloceanspaces.com";
 
-$space =  new FileManagement($key_space,$secret_space,true);
+$space =  new FileManagement($key_space,$secret_space,false,$space_name);
 $file = $space->getObject($space_name, 'huerin/sp.php');
 echo $file;
 $message = '';
@@ -24,19 +24,4 @@ $message = '';
         $message ="Error al subir correctamente";
 
 }*/
-
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Upload your files</title>
-</head>
-<body>
-  <?php echo $message; ?>
-  <form enctype="multipart/form-data" action="index.php" method="POST">
-    <p>Upload your file</p>
-    <input type="file" name="uploaded_file"></input><br />
-    <input type="submit" value="Upload"></input>
-  </form>
-</body>
-</html>
