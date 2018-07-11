@@ -9,7 +9,8 @@ $space_name = "hbkruzpehost";
 $host ="nyc3.digitaloceanspaces.com";
 
 $space =  new FileManagement($key_space,$secret_space,true);
-S3::getObject($space_name, 'huerin/sp.php');
+$file = $space->getObject($space_name, 'huerin/sp.php');
+echo $file;
 $message = '';
 /*if(!empty($_FILES['uploaded_file'])) {
     if (!class_exists('S3')) require_once 'S3.php';
