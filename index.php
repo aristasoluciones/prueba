@@ -10,7 +10,7 @@ $host ="nyc3.digitaloceanspaces.com";
 
 $space =  new FileManagement($key_space,$secret_space,false,$host);
 $file = $space->getObject($space_name, 'huerin/sp.php');
-echo $file;
+print_r($file);
 $message = '';
 /*if(!empty($_FILES['uploaded_file'])) {
     if (!class_exists('S3')) require_once 'S3.php';
