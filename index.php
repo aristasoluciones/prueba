@@ -8,7 +8,7 @@ $secret_space ="oqo0F9a+hFZdFmpGwFFJrKVm5qEg0EEXpajHawEOd1I";
 $space_name = "hbkruzpehost";
 $host ="nyc3.digitaloceanspaces.com";
 
-$space =  new FileManagement($key_space,$secret_space,false,$space_name);
+$space =  new FileManagement($key_space,$secret_space,false,$host);
 $file = $space->getObject($space_name, 'huerin/sp.php');
 echo $file;
 $message = '';
