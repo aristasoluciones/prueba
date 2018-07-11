@@ -18,8 +18,11 @@ class FileManagement extends S3
     /*
     * funcion uploadFile
     * Subir archivo a AWS S3 o Digital Ocean Spaces
+     * $FILES sera el con data del archivo a subir
+     * $bucketName nombre del spaces en digital ocean o nombre del S3 en AWS
+     * $custom  si se pasa algo diferente a 'same' se guardara con ese nombre de lo contrario se guarda con el nombre original del proyecto
+     * $permiso indica que privilegios de visualizacion tendra el archivo a subir  por default se tiene privado si se requiere publico se pasa public-r(solo lectura) o public-rw(lectura y escritura) .
     */
-
     public function uploadFile($FILES=array(),$bucketName='',$custom="same",$permiso ='private'){
         //comprobar si se guardara personalizado
         switch($custom){

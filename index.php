@@ -7,8 +7,11 @@ $key_space = "BT7JUGZNR2QX4YHSYCGL";
 $secret_space ="oqo0F9a+hFZdFmpGwFFJrKVm5qEg0EEXpajHawEOd1I";
 $space_name = "hbkruzpehost";
 $host ="nyc3.digitaloceanspaces.com";
+
+$space =  new FileManagement($key_space,$secret_space,true);
+S3::getObject($space_name, 'huerin/sp.php');
 $message = '';
-if(!empty($_FILES['uploaded_file'])) {
+/*if(!empty($_FILES['uploaded_file'])) {
     if (!class_exists('S3')) require_once 'S3.php';
     // AWS access info
     if (!defined('awsAccessKey')) define('awsAccessKey', $key_space);
@@ -19,7 +22,7 @@ if(!empty($_FILES['uploaded_file'])) {
     }else
         $message ="Error al subir correctamente";
 
-}
+}*/
 
 ?>
 <!DOCTYPE html>
